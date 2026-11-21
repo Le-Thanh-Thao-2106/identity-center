@@ -84,7 +84,18 @@
         </header>
 
 
-        <div id="breastcareReturn" style="display:block;margin:20px 0;padding:18px 24px;border-radius:14px;background:#e7f7f7;color:#164458"><strong>Bạn đã đăng nhập Identity Center.</strong> Tiếp tục kết nối ứng dụng Breast-Cancer SVM. <a style="margin-left:12px;font-weight:800;color:#087e89" href="http://127.0.0.1:5500/frontend/login.html">Quay lại Breast-Cancer →</a></div>
+
+        <div id="breastcareReturn"
+            style="display:block;margin:20px 0;padding:18px 24px;border-radius:14px;background:#e7f7f7;color:#164458">
+
+            <strong>Bạn đã đăng nhập Identity Center.</strong>
+            Tiếp tục kết nối ứng dụng Breast-Cancer SVM.
+
+            <a href="https://breast-cancer-da2.onrender.com/login.html"
+            style="margin-left:12px;font-weight:800;color:#087e89">
+                Quay lại Breast-Cancer →
+            </a>
+        </div>
         <!-- WELCOME -->
         <section class="welcome-banner">
 
@@ -208,9 +219,16 @@
 
     // Danh mục ứng dụng độc lập với danh sách đã cấp quyền OAuth.
     // Khi triển khai công khai, thay url bằng domain HTTPS của frontend.
+    
     const APPLICATION_CATALOG = [
-        { name: "Breast-Cancer SVM", description: "Phân tích dữ liệu ung thư vú bằng mô hình SVM", url: "http://127.0.0.1:5500/frontend/login.html", icon: "✚" }
+        {
+            name: "Breast-Cancer SVM",
+            description: "Phân tích dữ liệu ung thư vú bằng mô hình SVM",
+            url: "https://breast-cancer-da2.onrender.com/login.html",
+            icon: "✚"
+        }
     ];
+
     const catalog = document.getElementById("bcAppCatalog");
     APPLICATION_CATALOG.forEach(app => {
         const card = document.createElement("article");
