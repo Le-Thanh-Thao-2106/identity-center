@@ -1,0 +1,1125 @@
+
+/* ==============================
+   1. CẤU HÌNH CHUNG
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f5f7fb;
+    color: #202b3c;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* ==============================
+   2. BỐ CỤC CHÍNH
+================================ */
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* ==============================
+   3. THANH ĐIỀU HƯỚNG
+================================ */
+
+.sidebar {
+    width: 255px;
+    min-height: 100vh;
+    background: #ffffff;
+    border-right: 1px solid #e8edf4;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 8px 38px;
+}
+
+.brand-icon {
+    width: 43px;
+    height: 43px;
+    border-radius: 12px;
+    background: #3157c8;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.brand h2 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #202b3c;
+}
+
+.brand span {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: #8b96a8;
+    margin-top: 4px;
+}
+
+.menu-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #a0aabb;
+    margin: 0 10px 14px;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 13px 14px;
+    border-radius: 9px;
+    color: #68758a;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.menu-item span {
+    font-size: 18px;
+}
+
+.menu-item:hover,
+.menu-item.active {
+    background: #eef3ff;
+    color: #3157c8;
+}
+
+.menu-item.active {
+    font-weight: 600;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+.sidebar-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    padding: 15px 12px;
+    background: #f5f8ff;
+    border-radius: 10px;
+}
+
+.note-icon {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    background: #e2ebff;
+    color: #3157c8;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-note strong {
+    font-size: 12px;
+    color: #34445d;
+}
+
+.sidebar-note p {
+    font-size: 11px;
+    line-height: 1.5;
+    color: #8290a5;
+    margin-top: 5px;
+}
+
+
+/* ==============================
+   4. NỘI DUNG CHÍNH
+================================ */
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+    padding: 35px 48px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.breadcrumb {
+    font-size: 10px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: #8995a8;
+    margin-bottom: 8px;
+}
+
+.topbar h1 {
+    font-size: 25px;
+    color: #202b3c;
+}
+
+.logout-btn {
+    border: 1px solid #e1e7ef;
+    background: white;
+    color: #526078;
+    padding: 10px 17px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.logout-btn:hover {
+    background: #fff1f1;
+    color: #d64c4c;
+    border-color: #f5d2d2;
+}
+
+
+/* ==============================
+   5. KHU VỰC CHÀO MỪNG
+================================ */
+
+.welcome-banner {
+    position: relative;
+    overflow: hidden;
+    min-height: 205px;
+    padding: 35px 40px;
+    border-radius: 15px;
+    background: linear-gradient(115deg, #2448a8, #4169d5);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 35px;
+}
+
+.welcome-text {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+}
+
+.welcome-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    color: #d8e2ff;
+    margin-bottom: 14px;
+}
+
+.welcome-banner h2 {
+    font-size: 27px;
+    margin-bottom: 12px;
+}
+
+.welcome-banner h2 span {
+    color: #dce6ff;
+}
+
+.welcome-banner p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #e0e8ff;
+}
+
+.welcome-decoration {
+    position: absolute;
+    width: 280px;
+    height: 230px;
+    right: 35px;
+    top: -10px;
+}
+
+.decoration-circle {
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+}
+
+.circle-one {
+    width: 220px;
+    height: 220px;
+    right: 0;
+    top: 0;
+}
+
+.circle-two {
+    width: 160px;
+    height: 160px;
+    right: 30px;
+    top: 30px;
+}
+
+.decoration-icon {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    right: 65px;
+    top: 65px;
+    background: rgba(255, 255, 255, 0.13);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+    font-weight: 700;
+    backdrop-filter: blur(5px);
+}
+
+
+/* ==============================
+   6. CÁC KHU VỰC NỘI DUNG
+================================ */
+
+.content-section {
+    margin-bottom: 35px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.section-heading h2 {
+    font-size: 19px;
+    color: #26344a;
+    margin-bottom: 7px;
+}
+
+.section-heading p {
+    font-size: 13px;
+    color: #8490a2;
+    line-height: 1.6;
+}
+
+
+/* ==============================
+   7. THẺ TÀI KHOẢN
+================================ */
+
+.account-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 22px 25px;
+    background: white;
+    border: 1px solid #e9edf3;
+    border-radius: 12px;
+}
+
+.account-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #e9efff;
+    color: #3157c8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.account-details {
+    flex: 1;
+}
+
+.account-details h3 {
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+
+.account-details p {
+    font-size: 13px;
+    color: #8490a2;
+}
+
+.account-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 20px;
+    background: #eaf8f0;
+    color: #278653;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #35b875;
+}
+
+
+/* ==============================
+   8. DANH SÁCH ỨNG DỤNG
+================================ */
+
+.applications-heading {
+    margin-bottom: 20px;
+}
+
+.refresh-btn {
+    padding: 10px 15px;
+    border: 1px solid #dce4f0;
+    background: white;
+    color: #3157c8;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.refresh-btn:hover {
+    background: #eef3ff;
+}
+
+.applications-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 18px;
+}
+
+.application-card {
+    background: white;
+    border: 1px solid #e7ebf2;
+    border-radius: 12px;
+    padding: 22px;
+    transition: 0.2s ease;
+}
+
+.application-card:hover {
+    border-color: #cbd7f5;
+    box-shadow: 0 7px 22px rgba(35, 62, 120, 0.06);
+    transform: translateY(-2px);
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 23px;
+}
+
+.app-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 11px;
+    background: #eef3ff;
+    color: #3157c8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.app-info {
+    min-width: 0;
+}
+
+.app-info h3 {
+    font-size: 15px;
+    color: #26344a;
+    margin-bottom: 6px;
+    overflow-wrap: anywhere;
+}
+
+.app-status {
+    font-size: 11px;
+    color: #29915b;
+    font-weight: 600;
+}
+
+.permission-box {
+    padding: 14px;
+    background: #f7f9fc;
+    border-radius: 9px;
+    margin-bottom: 15px;
+}
+
+.permission-box > span,
+.app-date > span {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    color: #8995a8;
+    margin-bottom: 10px;
+}
+
+.permission-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.permission-tag {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 5px;
+    background: #e8efff;
+    color: #3157c8;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.app-date {
+    margin-bottom: 19px;
+}
+
+.app-date p {
+    font-size: 12px;
+    color: #526078;
+}
+
+.app-footer {
+    border-top: 1px solid #edf0f5;
+    padding-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.revoke-btn {
+    border: 1px solid #f0d6d6;
+    background: white;
+    color: #d04e4e;
+    padding: 9px 13px;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.revoke-btn:hover {
+    background: #fff1f1;
+    border-color: #e7bcbc;
+}
+
+
+/* ==============================
+   9. TRẠNG THÁI TẢI VÀ TRỐNG
+================================ */
+
+.loading-card,
+.empty-card {
+    grid-column: 1 / -1;
+    padding: 35px 20px;
+    text-align: center;
+    background: white;
+    border: 1px solid #e7ebf2;
+    border-radius: 12px;
+    color: #8290a5;
+    font-size: 13px;
+}
+
+.empty-icon {
+    font-size: 30px;
+    color: #9aaedc;
+    margin-bottom: 12px;
+}
+
+.empty-card h3 {
+    color: #34445d;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.empty-card p {
+    font-size: 12px;
+}
+
+
+/* ==============================
+   10. CHÂN TRANG
+================================ */
+
+.dashboard-footer {
+    border-top: 1px solid #e6ebf2;
+    padding-top: 20px;
+    margin-top: 45px;
+}
+
+.dashboard-footer p {
+    color: #9aa4b3;
+    font-size: 11px;
+}
+
+
+/* ==============================
+   11. RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        width: 210px;
+    }
+
+    .main-content {
+        padding: 30px 25px;
+    }
+
+    .welcome-decoration {
+        opacity: 0.5;
+        right: -40px;
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .dashboard {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+        padding: 18px;
+        border-right: none;
+        border-bottom: 1px solid #e8edf4;
+    }
+
+    .brand {
+        padding: 0 0 15px;
+    }
+
+    .sidebar-menu {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .menu-label,
+    .sidebar-bottom {
+        display: none;
+    }
+
+    .menu-item {
+        padding: 9px 10px;
+        font-size: 12px;
+    }
+
+    .main-content {
+        padding: 23px 16px;
+    }
+
+    .topbar {
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .topbar h1 {
+        font-size: 21px;
+    }
+
+    .logout-btn {
+        padding: 9px 11px;
+        font-size: 11px;
+    }
+
+    .welcome-banner {
+        padding: 27px 23px;
+        min-height: 190px;
+    }
+
+    .welcome-banner h2 {
+        font-size: 22px;
+    }
+
+    .welcome-banner p {
+        font-size: 12px;
+        max-width: 85%;
+    }
+
+    .welcome-decoration {
+        opacity: 0.2;
+    }
+
+    .account-card {
+        flex-wrap: wrap;
+        padding: 18px;
+    }
+
+    .account-status {
+        margin-left: 68px;
+    }
+
+    .applications-heading {
+        align-items: flex-start;
+    }
+
+    .applications-list {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* ==============================
+   12. GIAO DIỆN ĐĂNG NHẬP
+================================ */
+
+.login-container {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    background: #ffffff;
+}
+
+.login-intro {
+    position: relative;
+    min-height: 100vh;
+    padding: 45px 65px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    background: linear-gradient(145deg, #173b91, #3157c8);
+    color: white;
+}
+
+.login-intro .brand {
+    padding: 0;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.login-intro .brand-icon {
+    background: rgba(255, 255, 255, 0.17);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.intro-content {
+    max-width: 570px;
+    margin: 45px auto;
+    width: 100%;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #cbd9ff;
+    margin-bottom: 22px;
+}
+
+.intro-content h1 {
+    font-size: clamp(30px, 3.2vw, 43px);
+    line-height: 1.25;
+    margin-bottom: 20px;
+}
+
+.intro-content > p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #dce5ff;
+    max-width: 470px;
+}
+
+.app-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.app-list span {
+    padding: 9px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 7px;
+    font-size: 12px;
+    color: white;
+}
+
+.identity-illustration {
+    display: block;
+    width: 100%;
+    max-width: 430px;
+    max-height: 230px;
+    object-fit: contain;
+    margin: 28px auto 0;
+    border-radius: 12px;
+}
+
+.intro-footer {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #cbd9ff;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 430px;
+    margin: auto;
+    padding: 45px;
+    align-self: center;
+}
+
+.login-form h2 {
+    font-size: 30px;
+    color: #202b3c;
+    margin-bottom: 10px;
+}
+
+.login-form > p {
+    font-size: 14px;
+    color: #8490a2;
+    margin-bottom: 35px;
+}
+
+.login-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #34445d;
+    margin-bottom: 9px;
+}
+
+.login-form input {
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    border: 1px solid #dce3ed;
+    border-radius: 8px;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    color: #202b3c;
+    margin-bottom: 22px;
+    transition: 0.2s;
+}
+
+.login-form input:focus {
+    border-color: #3157c8;
+    box-shadow: 0 0 0 3px rgba(49, 87, 200, 0.1);
+}
+
+.login-form button {
+    height: 48px;
+    border: none;
+    border-radius: 8px;
+    background: #3157c8;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.login-form button:hover {
+    background: #2448a8;
+    transform: translateY(-1px);
+}
+
+.login-form .register-link {
+    margin-top: 25px;
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 13px;
+    color: #8490a2;
+}
+
+.register-link a {
+    color: #3157c8;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+
+@media (max-width: 850px) {
+    .login-container {
+        grid-template-columns: 1fr;
+    }
+
+    .login-intro {
+        min-height: auto;
+        padding: 30px;
+    }
+
+    .intro-content {
+        margin: 45px auto 30px;
+    }
+
+    .intro-content h1 {
+        font-size: 32px;
+    }
+
+    .identity-illustration {
+        max-height: 180px;
+    }
+
+    .intro-footer {
+        margin-top: 15px;
+    }
+
+    .login-form {
+        padding: 45px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-intro {
+        padding: 25px 22px;
+    }
+
+    .intro-content h1 {
+        font-size: 27px;
+    }
+
+    .login-form {
+        padding: 35px 24px;
+    }
+
+    .login-form h2 {
+        font-size: 25px;
+    }
+}
+
+
+/* ==============================
+   13. GIAO DIỆN XÁC NHẬN CẤP QUYỀN OAUTH
+================================ */
+
+.consent-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    background: #f5f7fb;
+}
+
+.consent-card {
+    width: 100%;
+    max-width: 510px;
+    padding: 38px;
+    background: #ffffff;
+    border: 1px solid #e7ebf2;
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(35, 62, 120, 0.08);
+}
+
+.consent-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.consent-header h2 {
+    font-size: 17px;
+    color: #3157c8;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+
+.consent-header p {
+    color: #8995a8;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.consent-icon {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    background: #eef3ff;
+    color: #3157c8;
+    font-size: 29px;
+}
+
+.consent-card h1 {
+    color: #26344a;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.consent-description {
+    color: #8490a2;
+    font-size: 13px;
+    line-height: 1.7;
+    text-align: center;
+    margin-bottom: 27px;
+}
+
+.consent-app {
+    padding: 17px;
+    background: #f7f9fc;
+    border: 1px solid #edf0f5;
+    border-radius: 10px;
+    margin-bottom: 22px;
+}
+
+.consent-app label {
+    display: block;
+    color: #8995a8;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.consent-app strong {
+    display: block;
+    color: #34445d;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
+.consent-app a {
+    color: #3157c8;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+    text-decoration: none;
+}
+
+.consent-app a:hover {
+    text-decoration: underline;
+}
+
+.consent-permissions {
+    margin-bottom: 25px;
+}
+
+.consent-permissions h3 {
+    color: #34445d;
+    font-size: 14px;
+    margin-bottom: 13px;
+}
+
+.consent-permissions ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.consent-permissions li {
+    padding: 8px 12px;
+    border-radius: 7px;
+    background: #eef3ff;
+    color: #3157c8;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.consent-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.consent-actions button {
+    flex: 1;
+    min-height: 45px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.consent-allow {
+    border: none;
+    background: #3157c8;
+    color: #ffffff;
+}
+
+.consent-allow:hover {
+    background: #2448a8;
+}
+
+.consent-deny {
+    border: 1px solid #dce3ed;
+    background: #ffffff;
+    color: #526078;
+}
+
+.consent-deny:hover {
+    background: #f5f7fb;
+}
+
+.consent-footer {
+    margin-top: 22px;
+    text-align: center;
+    color: #9aa4b3;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+@media (max-width: 500px) {
+    .consent-card {
+        padding: 27px 22px;
+    }
+
+    .consent-card h1 {
+        font-size: 22px;
+    }
+
+    .consent-actions {
+        flex-direction: column;
+    }
+}
+
+.app-return-box{margin:20px 0;padding:16px 18px;background:#edf6fc;border:1px solid #cfe4f3;border-radius:14px;display:flex;flex-direction:column;gap:8px;color:#37546a;font-size:14px}.app-return-box a{color:#075f83;font-weight:800;text-decoration:none}.app-return-box a:hover{text-decoration:underline}

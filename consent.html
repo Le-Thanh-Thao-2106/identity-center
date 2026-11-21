@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identity Center - Cấp quyền</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="consent-container">
+
+        <div class="consent-card">
+
+            <div class="consent-brand">
+                <h2>IDENTITY CENTER</h2>
+                <p>QUẢN LÝ QUYỀN TRUY CẬP</p>
+            </div>
+
+            <div class="consent-icon">
+                <span>🔐</span>
+            </div>
+
+            <h1>Xác nhận cấp quyền</h1>
+
+            <p class="consent-description">
+                Một ứng dụng đang yêu cầu quyền truy cập
+                vào tài khoản Identity Center của bạn.
+            </p>
+
+            <div class="consent-details">
+                <p>Ứng dụng: <strong id="clientName">Đang tải...</strong></p>
+                <p>Địa chỉ chuyển hướng:
+                    <strong id="redirectUri">Đang tải...</strong>
+                </p>
+            </div>
+
+            <div class="consent-permissions">
+                <h3>Thông tin được yêu cầu</h3>
+                <ul id="scopeList">
+                    <li>Đang tải quyền truy cập...</li>
+                </ul>
+            </div>
+
+            <div id="consentMessage"></div>
+
+            <div class="consent-actions">
+                <button id="approveBtn">Cho phép</button>
+                <button id="denyBtn">Từ chối</button>
+            </div>
+
+            <p class="consent-footer">
+                Bạn có thể từ chối nếu không muốn chia sẻ thông tin.
+            </p>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/supabase.js"></script>
+
+    <script src="js/consent.js"></script>
+
+</body>
+</html>
