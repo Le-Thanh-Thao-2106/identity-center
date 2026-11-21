@@ -8,4 +8,4 @@ const SUPABASE_ANON_KEY = "sb_publishable_JZe24TJedlMgPgnrIdrKew_NeEPZuA2";
 const IDENTITY_CENTER_NAME = "Identity Center";
 
 // Địa chỉ trang đăng nhập trung tâm
-const IDENTITY_CENTER_URL = "http://localhost:3000";
+const IDENTITY_CENTER_URL = "https://identity-center.onrender.com";
