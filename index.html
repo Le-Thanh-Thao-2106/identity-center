@@ -245,17 +245,22 @@
     async function checkLogin() {
 
         const { data, error } =
-            await supabaseClient.auth.getSession();
+            await supabaseClient.auth.getUser();
 
-        if (error || !data.session) {
+        if (error || !data.user) {
             window.location.href = "login.html";
             return;
         }
 
-        const user = data.session.user;
+        const user = data.user;
+        const { data: profile } = await supabaseClient
+            .from("profiles")
+            .select("full_name")
+            .eq("id", user.id)
+            .maybeSingle();
 
         const fullName =
-            user.user_metadata?.full_name || "Người dùng";
+            profile?.full_name || user.user_metadata?.full_name || "Người dùng";
 
         userName.textContent = fullName;
         accountName.textContent = fullName;

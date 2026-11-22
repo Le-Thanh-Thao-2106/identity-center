@@ -1,5 +1,21 @@
 
 const registerForm = document.getElementById("registerForm");
+const authParams = new URLSearchParams(location.search);
+
+function openAccount() {
+    const redirect = authParams.get("redirect");
+    if (redirect?.startsWith("/")) {
+        const target = new URL(redirect, location.origin);
+        if (target.origin === location.origin) {
+            location.assign(target.href);
+            return;
+        }
+    }
+
+    location.assign(authParams.get("from") === "breastcare"
+        ? "https://breast-cancer-da2.onrender.com/login.html?start=1"
+        : "index.html");
+}
 
 if (registerForm) {
     registerForm.addEventListener("submit", async (event) => {
@@ -32,13 +48,18 @@ if (registerForm) {
         });
 
         if (error) {
-            alert("Đăng ký thất bại: " + error.message);
+            alert(error.code === "user_already_exists"
+                ? "Email này đã được đăng ký. Vui lòng dùng trang đăng nhập."
+                : "Đăng ký thất bại: " + error.message);
             return;
         }
 
-        alert("Tạo tài khoản thành công!");
+        if (!data.session) {
+            alert("Supabase chưa cấp phiên đăng nhập. Vui lòng kiểm tra cấu hình xác nhận email hoặc dùng trang đăng nhập nếu đã có tài khoản.");
+            return;
+        }
 
-        window.location.href = "login.html" + (new URLSearchParams(location.search).get("from") === "breastcare" ? "?from=breastcare" : "");
+        openAccount();
     });
 }
 
@@ -53,7 +74,7 @@ if (loginForm) {
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value;
 
-        const { data, error } =
+        const { error } =
             await supabaseClient.auth.signInWithPassword({
                 email: email,
                 password: password
@@ -64,21 +85,6 @@ if (loginForm) {
             return;
         }
 
-        alert("Đăng nhập thành công!");
-
-        // Kiểm tra có yêu cầu chuyển hướng hay không
-        const params = new URLSearchParams(window.location.search);
-        const redirect = params.get("redirect");
-
-        // Chỉ cho phép chuyển hướng trong cùng website
-        if (
-            redirect &&
-            redirect.startsWith("/") &&
-            !redirect.startsWith("//")
-        ) {
-            window.location.href = redirect;
-        } else {
-            window.location.href = "index.html" + (params.get("from") === "breastcare" ? "?from=breastcare" : "");
-        }
+        openAccount();
     });
 }
