@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng ký | Identity Center</title>
-    <script src="js/breastcare-handoff.js"></script>
+    <meta name="referrer" content="no-referrer">
     <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/glass.css"></head>
 
@@ -48,42 +48,40 @@
 
         <section class="login-form">
             <h2>Tạo tài khoản</h2>
-            <p>Đăng ký tài khoản Identity Center của bạn</p>
+            <p>Tạo tài khoản để sử dụng BreastCare SVM.</p>
 
             <form id="registerForm">
                 <label for="fullName">Họ và tên</label>
-                <input type="text" id="fullName"
+                <input type="text" id="fullName" autocomplete="name" maxlength="120"
                        placeholder="Nhập họ và tên" required>
 
                 <label for="email">Email</label>
-                <input type="email" id="email"
+                <input type="email" id="email" autocomplete="username" maxlength="254"
                        placeholder="Nhập địa chỉ email" required>
 
                 <label for="password">Mật khẩu</label>
-                <input type="password" id="password"
-                       placeholder="Tối thiểu 6 ký tự"
-                       minlength="6" required>
+                <input type="password" id="password" autocomplete="new-password" maxlength="128"
+                       placeholder="Tối thiểu 8 ký tự"
+                       minlength="8" required>
 
                 <label for="confirmPassword">Xác nhận mật khẩu</label>
-                <input type="password" id="confirmPassword"
+                <input type="password" id="confirmPassword" autocomplete="new-password" maxlength="128"
                        placeholder="Nhập lại mật khẩu" required>
 
-                <button type="submit">Tạo tài khoản</button>
+                <button type="submit" disabled>Tạo tài khoản</button>
+                <p id="authMessage" role="status"></p>
             </form>
             <div class="app-return-box"><span>Đang sử dụng BreastCare SVM?</span><a href="https://breast-cancer-da2.onrender.com/login.html">← Quay lại ứng dụng BreastCare</a></div>
 
             <p class="register-link">
                 Đã có tài khoản?
-                <a href="login.html">Đăng nhập</a>
+                <a id="alternateAuth" href="login.html">Đăng nhập</a>
             </p>
         </section>
 
     </main>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/config.js"></script>
-<script src="js/supabase.js"></script>
-<script src="js/auth.js"></script>
+<script src="js/auth.js?v=postgres-handoff"></script>
 
 </body>
 </html>

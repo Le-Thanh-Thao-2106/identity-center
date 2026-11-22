@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Identity Center</title>
+    <script>
+        const openBreastCareSignIn = location.pathname === "/" ||
+            new URLSearchParams(location.search).get("from") === "breastcare";
+        if (openBreastCareSignIn) location.replace("login.html");
+    </script>
 
     <link rel="stylesheet" href="css/style.css">
 <style>
@@ -494,7 +499,7 @@
 
 
     // KHỞI CHẠY
-    checkLogin();
+    if (supabaseClient) checkLogin();
 
 </script>
 

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập | Identity Center</title>
-    <script src="js/breastcare-handoff.js"></script>
+    <meta name="referrer" content="no-referrer">
     <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/glass.css"></head>
 
@@ -47,18 +47,19 @@
 
         <section class="login-form">
             <h2>Chào mừng trở lại!</h2>
-            <p>Đăng nhập vào tài khoản của bạn</p>
+            <p>Đăng nhập để mở BreastCare SVM.</p>
 
             <form id="loginForm">
                 <label for="email">Email</label>
-                <input type="email" id="email"
+                <input type="email" id="email" autocomplete="username" maxlength="254"
                        placeholder="Nhập email" required>
 
                 <label for="password">Mật khẩu</label>
-                <input type="password" id="password"
+                <input type="password" id="password" autocomplete="current-password" maxlength="128"
                        placeholder="Nhập mật khẩu" required>
 
-                <button type="submit">Đăng nhập</button>
+                <button type="submit" disabled>Đăng nhập</button>
+                <p id="authMessage" role="status"></p>
             </form>
             
             <div class="app-return-box">
@@ -70,14 +71,11 @@
 
             <p class="register-link">
                 Chưa có tài khoản?
-                <a href="register.html">Đăng ký ngay</a>
+                <a id="alternateAuth" href="register.html">Đăng ký ngay</a>
             </p>
         </section>
     </main>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/config.js"></script>
-<script src="js/supabase.js"></script>
-<script src="js/auth.js"></script>
+<script src="js/auth.js?v=postgres-handoff"></script>
 </body>
 </html>
