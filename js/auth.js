@@ -12,12 +12,10 @@ function openAccount() {
         }
     }
 
-    location.assign(authParams.get("from") === "breastcare"
-        ? "https://breast-cancer-da2.onrender.com/login.html?start=1"
-        : "index.html");
+    location.assign("index.html");
 }
 
-if (registerForm) {
+if (registerForm && supabaseClient) {
     registerForm.addEventListener("submit", async (event) => {
         event.preventDefault();
 
@@ -67,7 +65,7 @@ if (registerForm) {
 
 const loginForm = document.getElementById("loginForm");
 
-if (loginForm) {
+if (loginForm && supabaseClient) {
     loginForm.addEventListener("submit", async (event) => {
         event.preventDefault();
 
