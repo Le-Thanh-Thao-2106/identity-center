@@ -6,6 +6,7 @@
         <meta name="referrer" content="no-referrer" />
         <title>Đăng nhập | Identity Center</title>
         <link rel="stylesheet" href="/css/portal.css?v=portal-1" />
+        <link rel="stylesheet" href="/css/auth-motion.css?v=motion-1" />
     </head>
     <body class="identity-site">
         <main class="identity-shell">
@@ -18,41 +19,33 @@
                     </div>
                 </div>
             </header>
-
-            <div class="identity-auth">
-                <aside class="identity-cover">
-                    <div class="identity-cover-art" aria-hidden="true">
-                        <span class="identity-orbit orbit-outer"></span>
-                        <span class="identity-orbit orbit-inner"></span>
-                        <span class="identity-orbit orbit-tilt"></span>
-                        <span class="identity-emblem">⚿</span>
-                        <span class="identity-satellite satellite-app">▦</span>
-                        <span class="identity-satellite satellite-user">♙</span>
-                    </div>
-                    <div class="identity-cover-copy">
-                        <p>Một tài khoản cho các ứng dụng của bạn</p>
-                    </div>
-                </aside>
-                <section class="identity-form-panel" aria-labelledby="identityHeading">
+            <div class="identity-auth motion-stage" data-mode="login">
+                <section
+                    data-form-mode="login"
+                    class="identity-form-panel"
+                    aria-labelledby="login-identityHeading"
+                >
                     <nav class="identity-segment" aria-label="Thao tác tài khoản">
-                        <a href="/login.html" aria-current="page">Đăng nhập</a>
-                        <a href="/register.html">Đăng ký</a>
+                        <a href="/login.html" data-change-mode="login" aria-current="page"
+                            >Đăng nhập</a
+                        >
+                        <a href="/register.html" data-change-mode="register">Đăng ký</a>
                     </nav>
                     <div class="identity-form-title">
-                        <h2 id="identityHeading">Chào mừng trở lại</h2>
+                        <h2 id="login-identityHeading">Chào mừng trở lại</h2>
                         <p>Đăng nhập để mở danh sách ứng dụng.</p>
                     </div>
-                    <p class="identity-message" id="authMessage" role="status" hidden></p>
+                    <p class="identity-message" id="login-authMessage" role="status" hidden></p>
                     <form
-                        id="identityForm"
+                        id="login-identityForm"
                         class="identity-form"
                         data-mode="login"
                         autocomplete="off"
                     >
-                        <label class="identity-field" for="email">
+                        <label class="identity-field" for="login-email">
                             Email
                             <input
-                                id="email"
+                                id="login-email"
                                 type="email"
                                 placeholder="ban@example.com"
                                 maxlength="254"
@@ -62,10 +55,10 @@
                             />
                         </label>
                         <div class="identity-field">
-                            <label for="password">Mật khẩu</label>
+                            <label for="login-password">Mật khẩu</label>
                             <div class="identity-password">
                                 <input
-                                    id="password"
+                                    id="login-password"
                                     type="password"
                                     placeholder="Nhập mật khẩu"
                                     autocomplete="off"
@@ -73,7 +66,7 @@
                                     required
                                 />
                                 <button
-                                    id="passwordToggle"
+                                    id="login-passwordToggle"
                                     type="button"
                                     class="identity-action"
                                     aria-label="Hiện mật khẩu"
@@ -89,9 +82,119 @@
                         </button>
                     </form>
                 </section>
+                <section
+                    inert
+                    aria-hidden="true"
+                    data-form-mode="register"
+                    class="identity-form-panel"
+                    aria-labelledby="register-identityHeading"
+                >
+                    <nav class="identity-segment" aria-label="Thao tác tài khoản">
+                        <a href="/login.html" data-change-mode="login">Đăng nhập</a>
+                        <a href="/register.html" data-change-mode="register" aria-current="page"
+                            >Đăng ký</a
+                        >
+                    </nav>
+                    <div class="identity-form-title">
+                        <h2 id="register-identityHeading">Tạo tài khoản</h2>
+                        <p>Tạo tài khoản để sử dụng các ứng dụng trong Identity Center.</p>
+                    </div>
+                    <p class="identity-message" id="register-authMessage" role="status" hidden></p>
+                    <form
+                        id="register-identityForm"
+                        class="identity-form"
+                        data-mode="register"
+                        autocomplete="off"
+                    >
+                        <label class="identity-field" for="register-fullName">
+                            Họ và tên
+                            <input
+                                id="register-fullName"
+                                type="text"
+                                placeholder="Nguyễn Minh An"
+                                maxlength="120"
+                                required
+                            />
+                        </label>
+
+                        <label class="identity-field" for="register-email">
+                            Email
+                            <input
+                                id="register-email"
+                                type="email"
+                                placeholder="ban@example.com"
+                                maxlength="254"
+                                autocapitalize="none"
+                                spellcheck="false"
+                                required
+                            />
+                        </label>
+                        <div class="identity-field">
+                            <label for="register-password">Mật khẩu</label>
+                            <div class="identity-password">
+                                <input
+                                    id="register-password"
+                                    type="password"
+                                    placeholder="Ít nhất 8 ký tự"
+                                    autocomplete="new-password"
+                                    minlength="8"
+                                    maxlength="128"
+                                    required
+                                />
+                                <button
+                                    id="register-passwordToggle"
+                                    type="button"
+                                    class="identity-action"
+                                    aria-label="Hiện mật khẩu"
+                                    aria-pressed="false"
+                                >
+                                    <span class="password-eye" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <label class="identity-field" for="register-confirmPassword">
+                            Xác nhận mật khẩu
+                            <input
+                                id="register-confirmPassword"
+                                type="password"
+                                autocomplete="new-password"
+                                placeholder="Nhập lại mật khẩu"
+                                minlength="8"
+                                maxlength="128"
+                                required
+                            />
+                        </label>
+
+                        <button class="identity-action primary" type="submit" disabled>
+                            Tạo tài khoản
+                        </button>
+                    </form>
+                </section>
+                <aside class="identity-cover">
+                    <div class="identity-cover-art" aria-hidden="true">
+                        <span class="identity-orbit orbit-outer"></span>
+                        <span class="identity-orbit orbit-inner"></span>
+                        <span class="identity-orbit orbit-tilt"></span>
+                        <span class="identity-emblem">⚿</span>
+                        <span class="identity-satellite satellite-app">▦</span>
+                        <span class="identity-satellite satellite-user">♙</span>
+                    </div>
+                    <div class="identity-cover-copy">
+                        <p>Một tài khoản cho các ứng dụng của bạn</p>
+                    </div>
+
+                    <a
+                        class="identity-action identity-cover-action"
+                        href="/register.html"
+                        data-change-mode="register"
+                    >
+                        Tạo tài khoản →
+                    </a>
+                </aside>
             </div>
         </main>
         <script src="/js/portal-client.js?v=portal-1"></script>
-        <script src="/js/auth.js?v=portal-1"></script>
+        <script src="/js/auth.js?v=motion-1"></script>
     </body>
 </html>
