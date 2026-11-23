@@ -2,7 +2,6 @@ const stage = document.querySelector(".motion-stage");
 const panels = [...stage.querySelectorAll("[data-form-mode]")];
 const coverAction = stage.querySelector(".identity-cover-action");
 const route = { login: "/login.html", register: "/register.html" };
-let ready = false;
 let pendingRequest = null;
 
 function activePanel() {
@@ -30,7 +29,9 @@ function resetAuthForm(panel) {
 function updateSubmitButtons() {
     for (const panel of panels) {
         const button = panel.querySelector('button[type="submit"]');
-        button.disabled = !ready || pendingRequest !== null;
+        const current = pendingRequest !== null && panel === activePanel();
+        button.disabled = pendingRequest !== null;
+        panel.querySelector("[data-cancel-auth]").hidden = !current;
     }
 }
 
@@ -96,13 +97,25 @@ for (const panel of panels) {
     const password = panel.querySelector(".identity-password input");
     const toggle = panel.querySelector(".identity-password button");
 
+    panel.querySelector("[data-cancel-auth]").addEventListener("click", () => {
+        pendingRequest?.abort();
+        pendingRequest = null;
+        password.value = "";
+        const confirmation = form.querySelector("#register-confirmPassword");
+        if (confirmation) confirmation.value = "";
+        setPasswordVisible(toggle, false);
+        updateSubmitButtons();
+        showAuthMessage(panel, "Đã hủy yêu cầu. Bạn có thể thử lại.");
+        password.focus();
+    });
+
     toggle.addEventListener("click", () =>
         setPasswordVisible(toggle, password.type === "password"),
     );
 
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
-        if (!ready || pendingRequest || panel.inert) return;
+        if (pendingRequest || panel.inert) return;
 
         const body = {
             email: form.querySelector('input[type="email"]').value,
@@ -121,9 +134,19 @@ for (const panel of panels) {
         pendingRequest = request;
         updateSubmitButtons();
         showAuthMessage(panel, "Đang xử lý…");
+        const slow = setTimeout(() => {
+            if (pendingRequest === request) {
+                showAuthMessage(
+                    panel,
+                    "Máy chủ phản hồi chậm. Bạn có thể chờ hoặc hủy để thử lại.",
+                );
+            }
+        }, 4000);
+        const timeout = AbortSignal.timeout(PORTAL_REQUEST_TIMEOUT_MS);
+        const signal = AbortSignal.any([request.signal, timeout]);
 
         try {
-            const result = await portalRequest(mode, { body, token: null, signal: request.signal });
+            const result = await portalRequest(mode, { body, token: null, signal });
             if (pendingRequest !== request) return;
 
             if (mode === "register") {
@@ -136,39 +159,43 @@ for (const panel of panels) {
                 throw new Error("Dịch vụ chưa cấp phiên Identity Center.");
             }
             sessionStorage.setItem(PORTAL_SESSION_KEY, result.portal_token);
+            savePortalProfile(result.profile, result.portal_token);
             location.replace("/");
         } catch (error) {
             if (pendingRequest === request) {
                 showAuthMessage(
                     panel,
-                    error.message || "Không thể kết nối với dịch vụ tài khoản.",
+                    timeout.aborted
+                        ? "Máy chủ chưa phản hồi. Vui lòng thử lại."
+                        : error.message || "Không thể kết nối với dịch vụ tài khoản.",
                     true,
                 );
             }
         } finally {
+            clearTimeout(slow);
             if (pendingRequest === request) {
                 pendingRequest = null;
-                resetAuthForm(panel);
+                password.value = "";
+                const confirmation = form.querySelector("#register-confirmPassword");
+                if (confirmation) confirmation.value = "";
+                setPasswordVisible(toggle, false);
                 updateSubmitButtons();
             }
         }
     });
 }
 
-async function prepareAuthForm() {
+function prepareAuthForm() {
     panels.forEach(resetAuthForm);
     const registered = new URLSearchParams(location.search).has("registered");
     if (location.search) history.replaceState(null, "", location.pathname);
 
-    await endPortalSession();
+    void endPortalSession();
     if (registered && stage.dataset.mode === "login") {
         showAuthMessage(activePanel(), "Tạo tài khoản thành công. Vui lòng đăng nhập.");
     }
 
-    ready = true;
     updateSubmitButtons();
 }
 
-prepareAuthForm().catch(() => {
-    showAuthMessage(activePanel(), "Không thể mở form. Vui lòng tải lại trang.", true);
-});
+prepareAuthForm();
