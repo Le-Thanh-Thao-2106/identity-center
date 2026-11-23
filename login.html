@@ -1,81 +1,97 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập | Identity Center</title>
-    <meta name="referrer" content="no-referrer">
-    <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/glass.css"></head>
-
-<body>
-
-    <main class="login-container">
-        <section class="login-intro">
-            <div class="brand">
-                <span class="brand-icon">✦</span>
-                <span>IDENTITY CENTER</span>
-            </div>
-
-            <div class="intro-content">
-                <span class="eyebrow">ONE ACCOUNT. ALL APPLICATIONS.</span>
-
-                <h1>Một tài khoản duy nhất cho tất cả ứng dụng của bạn.</h1>
-
-                <p>
-                    Kết nối liền mạch, quản lý tài khoản tập trung
-                    và trải nghiệm các nền tảng trong cùng một hệ thống.
-                </p>
-
-                <div class="app-list">
-                    <span>One Account</span>
-                    <span>Multiple Applications</span>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="referrer" content="no-referrer" />
+        <title>Đăng nhập | Identity Center</title>
+        <link rel="stylesheet" href="/css/portal.css?v=portal-1" />
+    </head>
+    <body class="identity-site">
+        <main class="identity-shell">
+            <header class="identity-topbar">
+                <div class="identity-brand">
+                    <span class="identity-mark" aria-hidden="true">◉</span>
+                    <div>
+                        <strong>Identity Center</strong>
+                        <small>Không gian ứng dụng</small>
+                    </div>
                 </div>
+            </header>
 
-                <img
-                    src="images/identity-visual.jfif"
-                    alt="Identity Center kết nối các ứng dụng"
-                    class="identity-illustration"
-                />
+            <div class="identity-auth">
+                <aside class="identity-cover">
+                    <div class="identity-cover-art" aria-hidden="true">
+                        <span class="identity-orbit orbit-outer"></span>
+                        <span class="identity-orbit orbit-inner"></span>
+                        <span class="identity-orbit orbit-tilt"></span>
+                        <span class="identity-emblem">⚿</span>
+                        <span class="identity-satellite satellite-app">▦</span>
+                        <span class="identity-satellite satellite-user">♙</span>
+                    </div>
+                    <div class="identity-cover-copy">
+                        <p>Một tài khoản cho các ứng dụng của bạn</p>
+                    </div>
+                </aside>
+                <section class="identity-form-panel" aria-labelledby="identityHeading">
+                    <nav class="identity-segment" aria-label="Thao tác tài khoản">
+                        <a href="/login.html" aria-current="page">Đăng nhập</a>
+                        <a href="/register.html">Đăng ký</a>
+                    </nav>
+                    <div class="identity-form-title">
+                        <h2 id="identityHeading">Chào mừng trở lại</h2>
+                        <p>Đăng nhập để mở danh sách ứng dụng.</p>
+                    </div>
+                    <p class="identity-message" id="authMessage" role="status" hidden></p>
+                    <form
+                        id="identityForm"
+                        class="identity-form"
+                        data-mode="login"
+                        autocomplete="off"
+                    >
+                        <label class="identity-field" for="email">
+                            Email
+                            <input
+                                id="email"
+                                type="email"
+                                placeholder="ban@example.com"
+                                maxlength="254"
+                                autocapitalize="none"
+                                spellcheck="false"
+                                required
+                            />
+                        </label>
+                        <div class="identity-field">
+                            <label for="password">Mật khẩu</label>
+                            <div class="identity-password">
+                                <input
+                                    id="password"
+                                    type="password"
+                                    placeholder="Nhập mật khẩu"
+                                    autocomplete="off"
+                                    maxlength="128"
+                                    required
+                                />
+                                <button
+                                    id="passwordToggle"
+                                    type="button"
+                                    class="identity-action"
+                                    aria-label="Hiện mật khẩu"
+                                    aria-pressed="false"
+                                >
+                                    <span class="password-eye" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button class="identity-action primary" type="submit" disabled>
+                            Đăng nhập
+                        </button>
+                    </form>
+                </section>
             </div>
-
-            <div class="intro-footer">
-                CENTRALIZED AUTHENTICATION PLATFORM
-            </div>
-        </section>
-
-        <section class="login-form">
-            <h2>Chào mừng trở lại!</h2>
-            <p>Đăng nhập để mở BreastCare SVM.</p>
-
-            <form id="loginForm">
-                <label for="email">Email</label>
-                <input type="email" id="email" autocomplete="username" maxlength="254"
-                       placeholder="Nhập email" required>
-
-                <label for="password">Mật khẩu</label>
-                <input type="password" id="password" autocomplete="current-password" maxlength="128"
-                       placeholder="Nhập mật khẩu" required>
-
-                <button type="submit" disabled>Đăng nhập</button>
-                <p id="authMessage" role="status"></p>
-            </form>
-            
-            <div class="app-return-box">
-                <span>Đang sử dụng BreastCare SVM?</span>
-                <a href="https://breast-cancer-da2.onrender.com/login.html">
-                    ← Quay lại ứng dụng BreastCare
-                </a>
-            </div>
-
-            <p class="register-link">
-                Chưa có tài khoản?
-                <a id="alternateAuth" href="register.html">Đăng ký ngay</a>
-            </p>
-        </section>
-    </main>
-
-<script src="js/auth.js?v=postgres-handoff"></script>
-</body>
+        </main>
+        <script src="/js/portal-client.js?v=portal-1"></script>
+        <script src="/js/auth.js?v=portal-1"></script>
+    </body>
 </html>

@@ -1,507 +1,91 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Identity Center</title>
-    <script>
-        const openBreastCareSignIn = location.pathname === "/" ||
-            new URLSearchParams(location.search).get("from") === "breastcare";
-        if (openBreastCareSignIn) location.replace("login.html");
-    </script>
-
-    <link rel="stylesheet" href="css/style.css">
-<style>
-.bc-app-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;margin:18px 0 34px}
-.bc-app-card{background:#fff;border:1px solid #dce5f3;border-radius:18px;padding:24px;box-shadow:0 8px 22px rgba(25,57,100,.04)}
-.bc-app-card h3{margin:14px 0 8px;color:#132b4a;font-size:20px}
-.bc-app-card p{color:#667b99;line-height:1.6;min-height:45px}
-.bc-app-icon{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:14px;background:#e5f7f9;color:#008c9b;font-size:27px;font-weight:800}
-.bc-app-link{display:inline-block;background:#2361c5;color:#fff!important;text-decoration:none;border-radius:10px;padding:12px 18px;font-weight:700;margin-top:12px}
-.bc-app-link:hover{background:#184c9f}
-</style></head>
-
-<body>
-
-<div class="dashboard">
-
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-
-        <div class="brand">
-            <div class="brand-icon">ID</div>
-            <div>
-                <h2>Identity Center</h2>
-                <span>ACCOUNT MANAGEMENT</span>
-            </div>
-        </div>
-
-        <div class="sidebar-menu">
-            <p class="menu-label">TỔNG QUAN</p>
-
-            <a href="index.html" class="menu-item active">
-                <span>▦</span>
-                Tổng quan
-            </a>
-
-            <a href="#accountSection" class="menu-item">
-                <span>♙</span>
-                Tài khoản
-            </a>
-
-            <a href="#applicationsSection" class="menu-item">
-                <span>▣</span>
-                Ứng dụng kết nối
-            </a>
-        </div>
-
-        <div class="sidebar-bottom">
-            <div class="sidebar-note">
-                <div class="note-icon">✓</div>
-                <div>
-                    <strong>Tài khoản an toàn</strong>
-                    <p>Quản lý quyền truy cập tập trung.</p>
-                </div>
-            </div>
-        </div>
-
-    </aside>
-
-
-    <!-- MAIN CONTENT -->
-    <main class="main-content">
-
-        <!-- TOPBAR -->
-        <header class="topbar">
-
-            <div>
-                <p class="breadcrumb">TRANG CHỦ / TỔNG QUAN</p>
-                <h1>Tổng quan tài khoản</h1>
-            </div>
-
-            <button id="logoutBtn" class="logout-btn" type="button">
-                <span>↪</span>
-                Đăng xuất
-            </button>
-
-        </header>
-
-
-
-        <div id="breastcareReturn"
-            style="display:block;margin:20px 0;padding:18px 24px;border-radius:14px;background:#e7f7f7;color:#164458">
-
-            <strong>Bạn đã đăng nhập Identity Center.</strong>
-            Tiếp tục kết nối ứng dụng Breast-Cancer SVM.
-
-            <a href="https://breast-cancer-da2.onrender.com/login.html"
-            style="margin-left:12px;font-weight:800;color:#087e89">
-                Quay lại Breast-Cancer →
-            </a>
-        </div>
-        <!-- WELCOME -->
-        <section class="welcome-banner">
-
-            <div class="welcome-text">
-                <span class="welcome-tag">IDENTITY CENTER</span>
-
-                <h2>
-                    Xin chào,
-                    <span id="userName">Người dùng</span>!
-                </h2>
-
-                <p>
-                    Một tài khoản duy nhất cho tất cả ứng dụng của bạn.
-                    Quản lý tài khoản và quyền truy cập tại một nơi.
-                </p>
-            </div>
-
-            <div class="welcome-decoration">
-                <div class="decoration-circle circle-one"></div>
-                <div class="decoration-circle circle-two"></div>
-                <div class="decoration-icon">ID</div>
-            </div>
-
-        </section>
-
-
-        <!-- ACCOUNT -->
-        <section id="accountSection" class="content-section">
-
-            <div class="section-heading">
-                <div>
-                    <h2>Thông tin tài khoản</h2>
-                    <p>Thông tin đăng nhập và trạng thái tài khoản của bạn.</p>
-                </div>
-            </div>
-
-            <div class="account-card">
-
-                <div class="account-avatar" id="userAvatar">U</div>
-
-                <div class="account-details">
-                    <h3 id="accountName">Người dùng</h3>
-                    <p id="userEmail">Đang tải thông tin...</p>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="referrer" content="no-referrer" />
+        <title>Ứng dụng | Identity Center</title>
+        <link rel="stylesheet" href="/css/portal.css?v=portal-1" />
+    </head>
+    <body class="identity-site">
+        <main class="identity-shell">
+            <header class="identity-topbar">
+                <div class="identity-brand">
+                    <span class="identity-mark" aria-hidden="true">◉</span>
+                    <div>
+                        <strong>Identity Center</strong>
+                        <small>Không gian ứng dụng</small>
+                    </div>
                 </div>
 
-                <div class="account-status">
-                    <span class="status-dot"></span>
-                    Đang hoạt động
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- APPLICATION CATALOG: independent from OAuth grants -->
-        <section class="content-section" id="appCatalogSection" aria-label="Trung tâm ứng dụng">
-            <div class="section-heading"><div><h2>Khám phá ứng dụng của bạn</h2><p>Một tài khoản duy nhất, nhiều không gian làm việc. Mở Breast-Cancer ngay tại đây, kể cả khi bạn vừa đăng ký.</p></div></div>
-            <div class="bc-app-grid" id="bcAppCatalog"></div>
-        </section>
-
-        <!-- APPLICATIONS -->
-        <section id="applicationsSection" class="content-section">
-
-            <div class="section-heading applications-heading">
-
-                <div>
-                    <h2>Ứng dụng đã kết nối</h2>
-                    <p>
-                        Theo dõi các ứng dụng đang được cấp quyền truy cập
-                        vào tài khoản của bạn.
-                    </p>
-                </div>
-
-                <button id="refreshAppsBtn" class="refresh-btn" type="button">
-                    ↻ Làm mới
+                <button id="logoutButton" class="identity-action quiet" type="button" hidden>
+                    Đăng xuất
                 </button>
+            </header>
 
-            </div>
-
-            <div id="applicationsList" class="applications-list">
-                <div class="loading-card">
-                    Đang tải danh sách ứng dụng...
+            <section class="identity-hub" aria-labelledby="appsHeading">
+                <div class="identity-hub-heading">
+                    <div>
+                        <h2 id="appsHeading">Ứng dụng của bạn</h2>
+                        <p>Chọn ứng dụng để tiếp tục.</p>
+                    </div>
+                    <span class="identity-account">
+                        <span id="accountAvatar" aria-hidden="true"></span>
+                        <strong id="accountName"></strong>
+                    </span>
                 </div>
-            </div>
-
-        </section>
-
-
-        <!-- FOOTER -->
-        <footer class="dashboard-footer">
-            <p>Identity Center · Hệ thống quản lý tài khoản tập trung</p>
-        </footer>
-
-    </main>
-
-</div>
-
-
-<!-- SUPABASE -->
-<script>if(new URLSearchParams(location.search).get('from')==='breastcare')document.getElementById('breastcareReturn').style.display='block';</script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/config.js"></script>
-<script src="js/supabase.js"></script>
-
-
-<script>
-
-    const userName = document.getElementById("userName");
-    const accountName = document.getElementById("accountName");
-    const userEmail = document.getElementById("userEmail");
-    const userAvatar = document.getElementById("userAvatar");
-
-    const applicationsList =
-        document.getElementById("applicationsList");
-
-    const logoutBtn = document.getElementById("logoutBtn");
-    const refreshAppsBtn =
-        document.getElementById("refreshAppsBtn");
-
-
-    // Danh mục ứng dụng độc lập với danh sách đã cấp quyền OAuth.
-    // Khi triển khai công khai, thay url bằng domain HTTPS của frontend.
-    
-    const APPLICATION_CATALOG = [
-        {
-            name: "Breast-Cancer SVM",
-            description: "Phân tích dữ liệu ung thư vú bằng mô hình SVM",
-            url: "https://breast-cancer-da2.onrender.com/login.html",
-            icon: "✚"
-        }
-    ];
-
-    const catalog = document.getElementById("bcAppCatalog");
-    APPLICATION_CATALOG.forEach(app => {
-        const card = document.createElement("article");
-        card.className = "bc-app-card";
-        const badge = document.createElement("span"); badge.className = "bc-app-icon"; badge.textContent = app.icon;
-        const name = document.createElement("h3"); name.textContent = app.name;
-        const description = document.createElement("p"); description.textContent = app.description;
-        const link = document.createElement("a"); link.className = "bc-app-link";
-        link.href = app.url; link.textContent = "Truy cập ứng dụng ↗";
-        card.append(badge,name,description,link); catalog.appendChild(card);
-    });
-
-    // KIỂM TRA ĐĂNG NHẬP
-    async function checkLogin() {
-
-        const { data, error } =
-            await supabaseClient.auth.getUser();
-
-        if (error || !data.user) {
-            window.location.href = "login.html";
-            return;
-        }
-
-        const user = data.user;
-        const { data: profile } = await supabaseClient
-            .from("profiles")
-            .select("full_name")
-            .eq("id", user.id)
-            .maybeSingle();
-
-        const fullName =
-            profile?.full_name || user.user_metadata?.full_name || "Người dùng";
-
-        userName.textContent = fullName;
-        accountName.textContent = fullName;
-
-        userEmail.textContent = user.email || "";
-
-        userAvatar.textContent =
-            fullName.charAt(0).toUpperCase();
-
-        await loadApplications();
-    }
-
-
-    // TẢI DANH SÁCH ỨNG DỤNG
-    async function loadApplications() {
-
-        applicationsList.innerHTML =
-            '<div class="loading-card">Đang tải danh sách ứng dụng...</div>';
-
-        const { data: grants, error } =
-            await supabaseClient.auth.oauth.listGrants();
-
-        if (error) {
-
-            applicationsList.innerHTML =
-                '<div class="empty-card">Không thể tải danh sách ứng dụng: '
-                + error.message + '</div>';
-
-            return;
-        }
-
-        applicationsList.innerHTML = "";
-
-        if (!grants || grants.length === 0) {
-
-            applicationsList.innerHTML = `
-                <div class="empty-card">
-                    <div class="empty-icon">▣</div>
-                    <h3>Chưa có ứng dụng kết nối</h3>
-                    <p>
-                        Các ứng dụng được cấp quyền sẽ xuất hiện
-                        tại đây.
-                    </p>
+                <p id="hubMessage" class="identity-message" role="status">Đang xác minh phiên…</p>
+                <div id="appCatalog" class="identity-catalog" hidden>
+                    <article class="identity-app-card">
+                        <div class="identity-app-graphic" aria-hidden="true"><span>✚</span></div>
+                        <div class="identity-app-details">
+                            <h3>BreastCare SVM</h3>
+                            <p>Phân tích dữ liệu tế bào học với mô hình SVM.</p>
+                            <button
+                                id="openBreastCare"
+                                class="identity-action primary"
+                                type="button"
+                            >
+                                Mở BreastCare
+                            </button>
+                        </div>
+                    </article>
                 </div>
-            `;
-
-            return;
-        }
-
-
-        grants.forEach((grant) => {
-
-            const appCard = document.createElement("div");
-            appCard.className = "application-card";
-
-            // HEADER
-            const appHeader = document.createElement("div");
-            appHeader.className = "app-header";
-
-            const appIcon = document.createElement("div");
-            appIcon.className = "app-icon";
-            appIcon.textContent = "APP";
-
-            const appInfo = document.createElement("div");
-            appInfo.className = "app-info";
-
-            const appName = document.createElement("h3");
-
-            appName.textContent =
-                grant.client?.name?.trim() || "Ứng dụng";
-
-            const appStatus = document.createElement("span");
-            appStatus.className = "app-status";
-            appStatus.textContent = "Đã kết nối";
-
-            appInfo.appendChild(appName);
-            appInfo.appendChild(appStatus);
-
-            appHeader.appendChild(appIcon);
-            appHeader.appendChild(appInfo);
-
-
-            // QUYỀN TRUY CẬP
-            const permissionBox = document.createElement("div");
-            permissionBox.className = "permission-box";
-
-            const permissionTitle = document.createElement("span");
-            permissionTitle.textContent = "QUYỀN ĐÃ CẤP";
-
-            const permissionList = document.createElement("div");
-            permissionList.className = "permission-list";
-
-            (grant.scopes || []).forEach((scope) => {
-
-                const permission = document.createElement("span");
-                permission.className = "permission-tag";
-                permission.textContent = scope;
-
-                permissionList.appendChild(permission);
-            });
-
-            permissionBox.appendChild(permissionTitle);
-            permissionBox.appendChild(permissionList);
-
-
-            // THỜI GIAN KẾT NỐI
-            const dateBox = document.createElement("div");
-            dateBox.className = "app-date";
-
-            const dateTitle = document.createElement("span");
-            dateTitle.textContent = "NGÀY CẤP QUYỀN";
-
-            const dateValue = document.createElement("p");
-
-            dateValue.textContent =
-                grant.granted_at
-                    ? new Date(grant.granted_at).toLocaleString("vi-VN")
-                    : "Không xác định";
-
-            dateBox.appendChild(dateTitle);
-            dateBox.appendChild(dateValue);
-
-
-            // FOOTER
-            const appFooter = document.createElement("div");
-            appFooter.className = "app-footer";
-
-            const revokeBtn = document.createElement("button");
-            revokeBtn.className = "revoke-btn";
-            revokeBtn.type = "button";
-            revokeBtn.textContent = "Thu hồi quyền";
-
-            revokeBtn.addEventListener("click", async () => {
-
-                const clientId = grant.client?.id;
-
-                if (!clientId) {
-                    alert("Không tìm thấy mã ứng dụng.");
-                    return;
-                }
-
-                const confirmed = confirm(
-                    "Bạn có chắc muốn thu hồi quyền của " +
-                    appName.textContent + "?"
-                );
-
-                if (!confirmed) return;
-
-                revokeBtn.disabled = true;
-                revokeBtn.textContent = "Đang thu hồi...";
-
-                const { error } =
-                    await supabaseClient.auth.oauth.revokeGrant({
-                        clientId: clientId
-                    });
-
-                if (error) {
-
-                    alert(
-                        "Không thể thu hồi quyền: " + error.message
-                    );
-
-                    revokeBtn.disabled = false;
-                    revokeBtn.textContent = "Thu hồi quyền";
-
-                    return;
-                }
-
-                alert("Đã thu hồi quyền ứng dụng thành công!");
-
-                await loadApplications();
-
-            });
-
-            appFooter.appendChild(revokeBtn);
-
-
-            // GHÉP THÀNH THẺ ỨNG DỤNG
-            appCard.appendChild(appHeader);
-            appCard.appendChild(permissionBox);
-            appCard.appendChild(dateBox);
-            appCard.appendChild(appFooter);
-
-            applicationsList.appendChild(appCard);
-
-        });
-
-    }
-
-
-    // LÀM MỚI DANH SÁCH
-    refreshAppsBtn.addEventListener("click", async () => {
-
-        refreshAppsBtn.disabled = true;
-        refreshAppsBtn.textContent = "Đang tải...";
-
-        await loadApplications();
-
-        refreshAppsBtn.disabled = false;
-        refreshAppsBtn.textContent = "↻ Làm mới";
-
-    });
-
-
-    // ĐĂNG XUẤT
-    logoutBtn.addEventListener("click", async () => {
-
-        const confirmed = confirm(
-            "Bạn có chắc muốn đăng xuất khỏi Identity Center?"
-        );
-
-        if (!confirmed) return;
-
-        logoutBtn.disabled = true;
-
-        const { error } =
-            await supabaseClient.auth.signOut();
-
-        if (error) {
-
-            alert("Đăng xuất không thành công: " + error.message);
-
-            logoutBtn.disabled = false;
-
-            return;
-        }
-
-        window.location.href = "login.html";
-
-    });
-
-
-    // KHỞI CHẠY
-    if (supabaseClient) checkLogin();
-
-</script>
-
-</body>
+            </section>
+
+            <dialog id="appConsent" class="identity-consent" aria-labelledby="consentTitle">
+                <div class="identity-consent-card">
+                    <span class="identity-mark" aria-hidden="true">✓</span>
+                    <h2 id="consentTitle">Cho phép BreastCare truy cập?</h2>
+                    <p>BreastCare cần thông tin sau để nhận diện tài khoản của bạn.</p>
+                    <ul class="identity-permissions">
+                        <li><span aria-hidden="true">♙</span> Họ tên và email</li>
+                        <li><span aria-hidden="true">◉</span> Mã tài khoản</li>
+                    </ul>
+                    <p
+                        id="consentError"
+                        class="identity-message"
+                        role="alert"
+                        data-error="true"
+                        hidden
+                    ></p>
+                    <div class="identity-consent-actions">
+                        <button
+                            class="identity-action quiet"
+                            type="button"
+                            data-decision="deny"
+                            autofocus
+                        >
+                            Từ chối
+                        </button>
+                        <button class="identity-action primary" type="button" data-decision="allow">
+                            Cho phép
+                        </button>
+                    </div>
+                </div>
+            </dialog>
+        </main>
+        <script src="/js/portal-client.js?v=portal-1"></script>
+        <script src="/js/hub.js?v=portal-1"></script>
+    </body>
 </html>

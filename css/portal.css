@@ -1,0 +1,481 @@
+.identity-site {
+    color-scheme: light dark;
+    --ink: light-dark(#241839, #f4ebff);
+    --soft: light-dark(#675875, #c8b9d9);
+    --paper: light-dark(#fff, #21192d);
+    --base: light-dark(#f8f3ff, #171022);
+    --tint: light-dark(#eee1fb, #392851);
+    --line: light-dark(#dfd1ed, #59446a);
+    --violet: light-dark(#6032a5, #9770da);
+    --accent-text: light-dark(#6032a5, #dec5ff);
+    --on-violet: light-dark(#fff, #170b26);
+    --cover-start: light-dark(#25114b, #1e1335);
+    --cover-end: light-dark(#7240b3, #522575);
+    --cover-ink: #fcf7ff;
+    color: var(--ink);
+    font:
+        16px/1.5 "Segoe UI",
+        Arial,
+        sans-serif;
+    margin: 0;
+    padding: clamp(12px, 5vw, 56px);
+    min-height: 100dvh;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    background: radial-gradient(ellipse at 0% 3%, var(--tint), transparent 60%), var(--base);
+}
+
+.identity-site * {
+    box-sizing: border-box;
+}
+
+.identity-site [hidden] {
+    display: none !important;
+}
+
+.identity-site button,
+.identity-site input {
+    font: inherit;
+}
+
+.identity-site button {
+    cursor: pointer;
+}
+
+.identity-site :is(h2, h3, p) {
+    margin: 0;
+}
+
+.identity-site h2 {
+    font-size: clamp(24px, 4vw, 37px);
+    letter-spacing: -0.045em;
+    line-height: 1.15;
+}
+
+.identity-site h3 {
+    font-size: 21px;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+}
+
+.identity-site .identity-segment button {
+    padding: 7px 12px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: var(--paper);
+    color: var(--ink);
+}
+
+.identity-site button[aria-pressed="true"] {
+    color: var(--accent-text);
+    background: var(--tint);
+}
+
+.identity-site .identity-shell {
+    width: min(1080px, 100%);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--paper);
+}
+
+.identity-site .identity-topbar,
+.identity-site .identity-brand,
+.identity-site .identity-hub-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.identity-site .identity-topbar {
+    padding: 12px clamp(14px, 3vw, 28px);
+    border-bottom: 1px solid var(--line);
+}
+
+.identity-site .identity-brand {
+    justify-content: start;
+}
+
+.identity-site .identity-brand small {
+    display: block;
+    color: var(--soft);
+    font-size: 12px;
+}
+
+.identity-site .identity-mark,
+.identity-site .identity-account span {
+    display: grid;
+    place-items: center;
+    width: 39px;
+    height: 39px;
+    border-radius: 11px;
+    color: var(--accent-text);
+    background: var(--tint);
+}
+
+.identity-site .identity-auth {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr);
+}
+
+.identity-site .identity-cover {
+    display: grid;
+    align-content: center;
+    gap: 12px;
+    padding: clamp(22px, 5vw, 48px);
+    overflow: hidden;
+    background:
+        radial-gradient(at 80% 10%, #ae6ce77a 0%, transparent 55%),
+        linear-gradient(140deg, var(--cover-start), var(--cover-end));
+    color: var(--cover-ink);
+}
+
+.identity-site .identity-cover p {
+    max-width: 18ch;
+    font-size: clamp(25px, 4.5vw, 43px);
+    font-weight: 650;
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+}
+
+.identity-site .identity-cover-art {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 200px;
+}
+
+.identity-site .identity-orbit {
+    position: absolute;
+    width: 145px;
+    aspect-ratio: 1;
+    border: 1px solid #f0d4ff5e;
+    border-radius: 50%;
+}
+
+.identity-site .orbit-inner {
+    width: 113px;
+}
+
+.identity-site .orbit-tilt {
+    width: 185px;
+    height: 80px;
+    transform: rotate(-29deg);
+}
+
+.identity-site .identity-emblem,
+.identity-site .identity-satellite {
+    display: grid;
+    place-items: center;
+    background: #dbaaff32;
+    border: 1px solid #f5e2ff7a;
+    box-shadow: 0 8px 30px #18052b49;
+}
+
+.identity-site .identity-emblem {
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+}
+
+.identity-site .identity-emblem {
+    font-size: 32px;
+}
+
+.identity-site .identity-satellite {
+    position: absolute;
+    border-radius: 10px;
+    width: 33px;
+    height: 33px;
+}
+
+.identity-site .satellite-app {
+    top: 22%;
+    left: calc(50% + 57px);
+}
+
+.identity-site .satellite-user {
+    bottom: 18%;
+    right: calc(50% + 58px);
+}
+
+.identity-site .identity-form-panel,
+.identity-site .identity-hub {
+    padding: clamp(16px, 4vw, 38px);
+}
+
+.identity-site .identity-form-panel {
+    display: grid;
+    align-content: center;
+    gap: 17px;
+    padding-block: clamp(24px, 5vw, 56px);
+}
+
+.identity-site .identity-segment {
+    display: inline-flex;
+    justify-self: start;
+    padding: 3px;
+    gap: 3px;
+    background: var(--base);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+}
+
+.identity-site .identity-form-title p,
+.identity-site .identity-hub-heading p,
+.identity-site .identity-app-details p,
+.identity-site .identity-consent-card > p {
+    margin-top: 5px;
+    color: var(--soft);
+}
+
+.identity-site .identity-form {
+    display: grid;
+    gap: 11px;
+}
+
+.identity-site .identity-field {
+    display: grid;
+    gap: 4px;
+}
+
+.identity-site .identity-field input {
+    width: 100%;
+    min-width: 0;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--base);
+    color: var(--ink);
+}
+
+.identity-site .identity-field input::placeholder {
+    color: var(--soft);
+}
+
+.identity-site .identity-password {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 5px;
+}
+
+.identity-site .identity-action {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    min-height: 37px;
+    padding: 7px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--ink);
+    background: var(--paper);
+    font-weight: 600;
+}
+
+.identity-site .identity-action.primary {
+    border-color: var(--violet);
+    background: var(--violet);
+    color: var(--on-violet);
+}
+
+.identity-site .identity-message {
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: var(--tint);
+    color: var(--ink);
+}
+
+.identity-site .identity-hub {
+    display: grid;
+    align-content: start;
+    min-height: 330px;
+    gap: 15px;
+    position: relative;
+    background: radial-gradient(ellipse at 90% 0%, var(--tint), transparent 55%), var(--base);
+}
+
+.identity-site .identity-account {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--soft);
+}
+
+.identity-site .identity-account span {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.identity-site .identity-app-card {
+    width: min(100%, 320px);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--paper);
+}
+
+.identity-site .identity-app-graphic {
+    display: grid;
+    place-items: center;
+    padding: 13px;
+    background: linear-gradient(125deg, var(--tint), var(--base));
+}
+
+.identity-site .identity-app-graphic span {
+    display: grid;
+    place-items: center;
+    width: 43px;
+    height: 43px;
+    border-radius: 11px;
+    background: var(--violet);
+    color: var(--on-violet);
+}
+
+.identity-site .identity-app-details {
+    padding: 13px;
+}
+
+.identity-site .identity-app-details button {
+    margin-top: 12px;
+}
+
+.identity-site .identity-consent {
+    margin: auto;
+    max-width: calc(100% - 28px);
+    max-height: calc(100dvh - 28px);
+    width: min(100%, 445px);
+    padding: 0;
+    border: 0;
+    border-radius: 14px;
+    background: var(--paper);
+    color: var(--ink);
+}
+
+.identity-site .identity-consent::backdrop {
+    background: #1c102675;
+}
+
+.identity-site .identity-consent-card {
+    width: 100%;
+    padding: 20px;
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    background: var(--paper);
+    box-shadow: 0 10px 32px #170d2946;
+}
+
+.identity-site .identity-consent-card h2 {
+    margin-top: 8px;
+    font-size: 24px;
+}
+
+.identity-site .identity-permissions {
+    display: grid;
+    gap: 5px;
+    margin: 10px 0;
+    padding: 7px 10px;
+    list-style: none;
+    border-radius: 8px;
+    background: var(--base);
+}
+
+.identity-site .identity-permissions li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.identity-site .identity-consent-actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+@media (max-width: 560px) {
+    .identity-site .identity-auth {
+        grid-template-columns: 1fr;
+    }
+
+    .identity-site .identity-cover {
+        padding: 14px;
+    }
+
+    .identity-site .identity-cover-art {
+        display: none;
+    }
+}
+.identity-site .identity-segment a {
+    padding: 7px 12px;
+    border-radius: 7px;
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.identity-site .identity-segment a[aria-current="page"] {
+    color: var(--accent-text);
+    background: var(--tint);
+    font-weight: 600;
+}
+
+.identity-site .identity-action:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.identity-site .identity-message[data-error="true"] {
+    background: light-dark(#fce8ef, #492936);
+    color: light-dark(#8a2043, #ffd6e3);
+}
+
+.identity-site .identity-field input:focus-visible,
+.identity-site :is(a, button):focus-visible {
+    outline: 2px solid var(--violet);
+    outline-offset: 2px;
+}
+
+.identity-site .identity-catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 320px));
+    gap: 12px;
+    align-items: start;
+}
+
+.identity-site .password-eye {
+    display: grid;
+    place-items: center;
+    width: 15px;
+    height: 15px;
+    border: 1.5px solid currentColor;
+    border-radius: 70% 15%;
+    transform: rotate(45deg);
+}
+
+.identity-site .password-eye::after {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.identity-site [aria-pressed="true"] .password-eye::after {
+    width: 2px;
+    height: 17px;
+    border-radius: 0;
+}
+
+.identity-site #consentError {
+    margin-bottom: 10px;
+}
+
+.identity-site .identity-account:not(:has(strong:not(:empty))) {
+    visibility: hidden;
+}
